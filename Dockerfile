@@ -29,11 +29,15 @@ RUN dpkg -i 1c-enterprise-8.3*-common_8.3*.deb \
     && dpkg -i 1c-enterprise-8.3*-ws_8.3*.deb \
     && rm -rf /tmp/distributions
 
-WORKDIR /ibservers/main-branch
+# Добавление ibsrv и ibcmd в PATH
+RUN ln -s /opt/1cv8/x86_64/*/ibsrv /usr/local/bin/ibsrv \
+    && ln -s /opt/1cv8/x86_64/*/ibcmd /usr/local/bin/ibcmd
 
-RUN mkdir -p /src /dt/main-branch /cf/main-branch /configs/main-branch
+WORKDIR /ibservers
+RUN mkdir -p main/data with-data/data
+RUN mkdir -p /src /dt/main /bin/main /configs/main
 
-EXPOSE 1540-1541 1560-1591 8080 8282 8314
+# Переключение на пользователя postgres для запуска сервисов
+USER postgres
 
-# Запуск сервисов при старте контейнера
-CMD ["/start.sh"]
+EXPOSE 1540-1559 8080-8084 8282-8286 8314-8318
