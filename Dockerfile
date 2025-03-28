@@ -35,7 +35,11 @@ RUN ln -s /opt/1cv8/x86_64/*/ibsrv /usr/local/bin/ibsrv \
 
 WORKDIR /ibservers
 RUN mkdir -p main/data with-data/data
-RUN mkdir -p src dt/main bin/main configs/main
+
+# Создадим каталоги для монтирования будущего проекта из git
+RUN mkdir -p /mnt/src \
+    /mnt/dt/main /mnt/bin/main /mnt/configs/main \
+    /mnt/dt/with-data /mnt/bin/with-data /mnt/configs/with-data
 
 # Переключение на пользователя postgres для запуска сервисов
 USER postgres
