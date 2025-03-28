@@ -35,7 +35,7 @@ RUN ln -s /opt/1cv8/x86_64/*/ibsrv /usr/local/bin/ibsrv \
 
 WORKDIR /ibservers
 RUN mkdir -p main/data with-data/data
-RUN mkdir -p /src /dt/main /bin/main /configs/main
+RUN mkdir -p src dt/main bin/main configs/main
 
 # Переключение на пользователя postgres для запуска сервисов
 USER postgres
