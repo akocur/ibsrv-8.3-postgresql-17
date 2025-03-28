@@ -27,7 +27,7 @@ COPY ./distributions/1c-enterprise-8.3*-ws_8.3*.deb .
 RUN dpkg -i 1c-enterprise-8.3*-common_8.3*.deb \
     && dpkg -i 1c-enterprise-8.3*-server_8.3*.deb \
     && dpkg -i 1c-enterprise-8.3*-ws_8.3*.deb \
-    && rm -rf /tmp/distributions
+    && rm -rf /distributions
 
 # Добавление ibsrv и ibcmd в PATH
 RUN ln -s /opt/1cv8/x86_64/*/ibsrv /usr/local/bin/ibsrv \
